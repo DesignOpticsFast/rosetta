@@ -1,0 +1,55 @@
+version: 2
+updates:
+  # 1) Keep GitHub Actions up-to-date
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+      time: "04:00"
+      timezone: "America/Los_Angeles"
+    open-pull-requests-limit: 5
+    commit-message:
+      prefix: "deps(actions)"
+      include: "scope"
+    groups:
+      gha-all:
+        patterns:
+          - "*"
+    rebase-strategy: "auto"
+
+  # 2) (Optional) Keep Python dependencies up-to-date
+  - package-ecosystem: "pip"
+    directory: "/api/python"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+      time: "04:00"
+      timezone: "America/Los_Angeles"
+    open-pull-requests-limit: 5
+    commit-message:
+      prefix: "deps(pip)"
+      include: "scope"
+    groups:
+      pip-all:
+        patterns:
+          - "*"
+    rebase-strategy: "auto"
+
+  # 3) (Optional) Keep git submodules up-to-date
+  - package-ecosystem: "gitsubmodule"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+      time: "04:00"
+      timezone: "America/Los_Angeles"
+    open-pull-requests-limit: 5
+    commit-message:
+      prefix: "deps(submodule)"
+      include: "scope"
+    groups:
+      gitsubmodule-all:
+        patterns:
+          - "*"
+    rebase-strategy: "auto"
